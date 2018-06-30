@@ -1,11 +1,20 @@
-#include<iostream>
+#include <iostream>
 #include <string.h>
+#include <cstddef>
 using namespace std;
  
+typedef struct 
+{
+    char* chave;
+    int PRR;
+}IndicePrimario;
+
 // No arvore B
 class NodeArvoreB
 {
-    char **Chaves;  // para armazenar chaves do tipo char* 
+    char **Chaves;  // para armazenar chaves do tipo char*
+    int *PRR;
+    int *Posisao_filhos; 
     int Min_ordem;      // para determinar quantidade minima de chaves/ponteiro
     NodeArvoreB **Filhos; // array para os filhos do nó
     int Numero_chaves;     // numero de chaves atualmente presenter no nó
@@ -19,7 +28,7 @@ public:
     
     int Encontra_Chave(char* chave);
     
-    void Insere_Nao_Cheio(char* chave);
+    void Insere_Nao_Cheio(char* chave,int PRR);
     
     /*Faz split em um determinado nó*/
     void Divide_Filho(int i, NodeArvoreB *y);
@@ -30,9 +39,9 @@ public:
 
     void Remove_Nao_Folha(int indice);
 
-    char* Encontra_Predecessor(int indice);
-
-    char* Encontra_Sucessor(int indice);
+    char* Encontra_Predecessor(int indice,int *aux_prr_predecessor);
+    
+    char* Encontra_Sucessor(int indice,int *aux_prr_sucessor);
 
     void Preenche_Node_Filho(int indice);
 
@@ -41,6 +50,8 @@ public:
     void Pega_Chave_Node_Seguinte(int indice);
  
     void merge(int indice);
+
+    void Escreve_Interno(FILE * arquivo_Arvore);
 
 // Make ArvoreB friend of this so that we can access private members of this
 // class in ArvoreB functions
@@ -66,7 +77,9 @@ public:
     {  return (Raiz == NULL)? NULL : Raiz->Pesquisa_ArvoreB(chave); }
  
     // The main function that inserts a new key in this B-Tree
-    void Insere_ArvoreB(char* chave);
+    void Insere_ArvoreB(char* chave,int PRR);
 
     void Remove(char* chave);
+
+    void Escreve_Arquivo();
 };
