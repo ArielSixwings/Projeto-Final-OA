@@ -58,8 +58,8 @@ char** BuildPrimaryKey(char* name_withoutext, int size){
 void AddStudent(char* name_withoutext, int size){
 	FILE * read;
 	char name[42];
-	char mat[7];
-	char curse[4];
+	char mat[5];
+	char curse[2];
 	char clas[1];
 	char* filename = (char*) malloc(sizeof(name_withoutext)+4);
 	sprintf(filename, "%s.txt", name_withoutext);
