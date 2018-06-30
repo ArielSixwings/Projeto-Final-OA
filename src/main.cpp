@@ -9,7 +9,7 @@ int main(){
     unsigned int option;
     char choice[50];
     char name1[50];
-    // char name2[50];
+    char name2[50];
     // char student[30];
     char fullname1[50];
     // char fullname2[50];
@@ -21,7 +21,7 @@ int main(){
     printf("- [3] - Atualizar Aluno no Arquivo -\n");
     printf("- [4] - Adicionar Aluno no Arquivo -\n");
     printf("-  [5] - Remover Aluno do Arquivo  -\n");
-    printf("-       [6] - Buscar Aluno         -\n");
+    printf("-      [6] - Buscar Aluno(Chave)   -\n");
     printf("----         [7] - Exit         ----\n");
     printf("------------------------------------\n");
     printf("Choose one: ");
@@ -30,6 +30,71 @@ int main(){
     system("clear");
     switch(option){
         case 1:
+            printf("\n");
+            printf("Qual o tipo do arquivo que deseja-se vizualizar? \n");
+            printf("-------- [0] - .bt --------\n");
+            printf("-------- [1] - .txt --------\n");
+            printf("Choose one: ");
+            scanf(" %[^\n]", choice);
+            option = atoi(choice);
+            system("clear");
+            if(option == 0){
+                printf("Arquivos Disponíveis:\n");
+                printf("--------------------\n");
+                printf("\n\n");
+                system("ls *.bt");
+                printf("\n\n");
+                printf("--------------------\n");
+                printf("\n");
+                printf("Escolha algum dos arquivos acima (escreva o nome sem a terminação .bt)\n");
+                printf("Choose one: ");
+                scanf(" %[^\n]", name1);
+                sprintf(fullname1, "%s.bt", name1);
+                exist1 = fopen(fullname1, "r");
+                if(exist1 == NULL){
+                    printf("Arquivo selecionado não foi encontrado!\n");
+                    break;
+                }else{
+                    sprintf(buf, "cat %s.bt", name1);
+                    printf("\n\n");
+                    system("clear");
+                    printf("Preview do Arquivo %s:\n\n", fullname1);
+                    system(buf);
+                    printf("\n\n");
+                    main();
+                    break;
+                }
+            }else if(option == 1){
+                printf("Arquivos Disponíveis:\n");
+                printf("--------------------\n");
+                printf("\n\n");
+                system("ls *.txt");
+                printf("\n\n");
+                printf("--------------------\n");
+                printf("\n");
+                printf("Escolha algum dos arquivos acima (escreva o nome sem a terminação .txt)\n");
+                printf("Choose one: ");
+                scanf(" %[^\n]", name1);
+                sprintf(fullname1, "%s.txt", name1);
+                exist1 = fopen(fullname1, "r");
+                if(exist1 == NULL){
+                    printf("Arquivo selecionado não foi encontrado!\n");
+                    break;
+                }else{
+                    sprintf(buf, "cat %s.txt", name1);
+                    printf("\n\n");
+                    system("clear");
+                    printf("Preview do Arquivo %s:\n\n", fullname1);
+                    system(buf);
+                    printf("\n\n");
+                    main();
+                    break;
+                }
+            }else{
+                printf("Infelizmente o vizualizador apenas funciona com os tipos apresentados!\n");
+                break;
+            }
+        case 2:
             printf("\n");
             printf("Arquivos Disponíveis:\n");
             printf("--------------------\n");
@@ -47,54 +112,40 @@ int main(){
                 printf("Arquivo selecionado não foi encontrado!\n");
                 break;
             }else{
-                sprintf(buf, "cat %s.txt", name1);
-                printf("\n\n");
-                system("clear");
-                printf("Preview do Arquivo %s:\n\n", fullname1);
-                system(buf);
-                printf("\n\n");
-                main();
-                break;
-            }
-        case 2:
-            printf("\n");
-            printf("Escolha a ordem da árvore B: \n");
-            scanf(" %[^\n]", name1);
-            ordem = atoi(name1);
-            if(ordem %2 == 0){
-                ArvoreB teste((ordem / 2));
-                int size = HowManyLines("lista1.txt");
-                char** Chaves = BuildPrimaryKey("lista1", size);
-                for(int i = 0; i < size; i++){
-                    teste.Insere_ArvoreB(Chaves[i],(i+1));
-                    //int a;
-                    //cin>>a;
-                    //cout<<Chaves[i]<<endl;
+                fclose(exist1);
+                printf("\n");
+                printf("Escolha a ordem da árvore B: \n");
+                scanf(" %[^\n]", name2);
+                ordem = atoi(name2);
+                if(ordem %2 == 0){
+                    ArvoreB teste((ordem / 2));
+                    int size = HowManyLines(fullname1);
+                    char** Chaves = BuildPrimaryKey(name1, size);
+                    for(int i = 0; i < size; i++){
+                        teste.Insere_ArvoreB(Chaves[i],(i+1));
+                    }
+                    teste.Escreve_Arquivo();
+                    system("clear");
+                    printf("Preview do Arquivo indicelista.bt:\n\n" );
+                    system("cat indicelista.bt");
+                    printf("\n\n");
+                    main();
+                    break;
+                }else{
+                    ArvoreB teste((ordem / 2) + 1);
+                    int size = HowManyLines(fullname1);
+                    char** Chaves = BuildPrimaryKey(name1, size);
+                    for(int i = 0; i < size; i++){
+                        teste.Insere_ArvoreB(Chaves[i],(i+1));
+                    }
+                    teste.Escreve_Arquivo();
+                    system("clear");
+                    printf("Preview do Arquivo indicelista.bt:\n\n");
+                    system("cat indicelista.bt");
+                    printf("\n\n");
+                    main();
+                    break;
                 }
-                teste.Percorre_ArvoreB();
-                //teste.Escreve_Arquivo();
-                cout<<endl;
-                char* jorge = new char[8];
-                jorge = Chaves[0];
-                teste.Remove(jorge);
-                //teste.Remove("ZEL28583");
-                //teste.Remove("BER81293");
-                //teste.Remove("DIE29981");
-                teste.Percorre_ArvoreB();
-                main();
-                break;
-            }else{
-                ArvoreB teste((ordem / 2) + 1);
-                int size = HowManyLines("lista1.txt");
-                char** Chaves = BuildPrimaryKey("lista1", size);
-                for(int i = 0; i < size; i++){
-                    teste.Insere_ArvoreB(Chaves[i],(i+1));
-                    //cout<<Chaves[i]<<endl;
-                }
-                teste.Percorre_ArvoreB();
-                teste.Escreve_Arquivo();
-                main();
-                break;
             }
         case 3:
             return 1;
@@ -116,7 +167,7 @@ int main(){
                 printf("Arquivo selecionado não foi encontrado!\n");
                 break;
             }else{
-                size = HowManyLines("lista1.txt");
+                size = HowManyLines(fullname1);
                 AddStudent(name1, size);
             }
         case 5:
