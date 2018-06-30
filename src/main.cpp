@@ -73,6 +73,14 @@ int main(){
                 }
                 teste.Percorre_ArvoreB();
                 //teste.Escreve_Arquivo();
+                cout<<endl;
+                char* jorge = new char[8];
+                jorge = Chaves[0];
+                teste.Remove(jorge);
+                //teste.Remove("ZEL28583");
+                //teste.Remove("BER81293");
+                //teste.Remove("DIE29981");
+                teste.Percorre_ArvoreB();
                 main();
                 break;
             }else{
@@ -84,7 +92,7 @@ int main(){
                     //cout<<Chaves[i]<<endl;
                 }
                 teste.Percorre_ArvoreB();
-                //teste.Escreve_Arquivo();
+                teste.Escreve_Arquivo();
                 main();
                 break;
             }

@@ -300,11 +300,10 @@ void NodeArvoreB::Divide_Filho(int i, NodeArvoreB *y){
     z->Numero_chaves = Min_ordem - 1;
     
     int j;
-    for ( j = 0; j < Min_ordem-1; j++)
+    for ( j = 0; j < Min_ordem-1; j++){
         z->Chaves[j] = y->Chaves[j+Min_ordem];
-        cout<<"antes: "<<z->PRR[j]<<endl;
         z->PRR[j] = y->PRR[j+Min_ordem];
-        cout<<"depois: "<<z->PRR[j]<<endl;
+    }
     if (y->folha == false){
         for (int j = 0; j < Min_ordem; j++)
             z->Filhos[j] = y->Filhos[j+Min_ordem];
@@ -317,9 +316,10 @@ void NodeArvoreB::Divide_Filho(int i, NodeArvoreB *y){
 
     Filhos[i+1] = z;
 
-    for ( j = Numero_chaves-1; j >= i; j--)
+    for ( j = Numero_chaves-1; j >= i; j--){
         Chaves[j+1] = Chaves[j];
         PRR[j+1] = PRR[j];
+    }
  
     Chaves[i] = y->Chaves[Min_ordem-1];
     PRR[i] = y->PRR[Min_ordem-1];
@@ -359,6 +359,7 @@ void NodeArvoreB::Escreve_Interno(FILE * arquivo_Arvore){
             fprintf(arquivo_Arvore,"%d  ", Numero_chaves);
         }
         fprintf(arquivo_Arvore,"%s  ", Chaves[i]);
+        fprintf(arquivo_Arvore," %.2d  ", PRR[i]);
     }
     char* quebra_linha = "\n";
     fprintf(arquivo_Arvore,"%s",quebra_linha);
