@@ -4,14 +4,15 @@
 
 int main(){
     int ordem;
+    int size;
     FILE * exist1;
     unsigned int option;
     char choice[50];
     char name1[50];
-    char name2[50];
-    char student[30];
+    // char name2[50];
+    // char student[30];
     char fullname1[50];
-    char fullname2[50];
+    // char fullname2[50];
     char buf[32];
     printf("------------------------------------\n");
     printf("----         Trabalho 2         ----\n");
@@ -84,7 +85,26 @@ int main(){
         case 3:
             return 1;
         case 4:
-            return 1;
+            printf("\n");
+            printf("Arquivos Disponíveis:\n");
+            printf("--------------------\n");
+            printf("\n\n");
+            system("ls *.txt");
+            printf("\n\n");
+            printf("--------------------\n");
+            printf("\n");
+            printf("Escolha algum dos arquivos acima (escreva o nome sem a terminação .txt)\n");
+            printf("Choose one: ");
+            scanf(" %[^\n]", name1);
+            sprintf(fullname1, "%s.txt", name1);
+            exist1 = fopen(fullname1, "r");
+            if(exist1 == NULL){
+                printf("Arquivo selecionado não foi encontrado!\n");
+                break;
+            }else{
+                size = HowManyLines("lista1.txt");
+                AddStudent(name1, size);
+            }
         case 5:
             return 1;
         case 6:

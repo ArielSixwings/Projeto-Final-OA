@@ -54,3 +54,33 @@ char** BuildPrimaryKey(char* name_withoutext, int size){
 	free(name);
 	return KeyArray;
 }
+
+void AddStudent(char* name_withoutext, int size){
+	FILE * read;
+	char name[42];
+	char mat[7];
+	char curse[4];
+	char clas[1];
+	char* filename = (char*) malloc(sizeof(name_withoutext)+4);
+	sprintf(filename, "%s.txt", name_withoutext);
+	read = fopen(filename, "r+");
+	fseek(read, 55*size, 0);
+	printf("Escreva o nome do aluno que será adicionado em até 42 espaços: \n");
+	scanf(" %[^\n]", name);
+	fprintf(read, "%s", name);
+	int sizename = strlen(name);
+	for(int i = sizename; i <= 40; i++){
+		fprintf(read, " ");
+	}
+	printf("Escreva a matrícula do aluno que será adicionado em até 5 espaços: \n");
+	scanf(" %[^\n]", mat);
+	fprintf(read, "%s  ", mat);
+	printf("Escreva o curso do aluno que será adicionado em até 2 espaços (letras maiúsculas): \n");
+	scanf(" %[^\n]", curse);
+	fprintf(read, "%s  ", curse);
+	printf("Escreva a turma do aluno que será adicionado em até 1 espaço (letra maiúscula): \n");
+	scanf(" %[^\n]", clas);
+	fprintf(read, "%s\n", clas);
+	free(filename);
+	fclose(read);
+}
