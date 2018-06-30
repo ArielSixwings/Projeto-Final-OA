@@ -67,11 +67,11 @@ int main(){
                 char** Chaves = BuildPrimaryKey("lista1", size);
                 for(int i = 0; i < size; i++){
                     teste.Insere_ArvoreB(Chaves[i],(i+1));
-                    //teste.Percorre_ArvoreB();
                     //int a;
                     //cin>>a;
                     //cout<<Chaves[i]<<endl;
                 }
+                teste.Percorre_ArvoreB();
                 //teste.Escreve_Arquivo();
                 main();
                 break;

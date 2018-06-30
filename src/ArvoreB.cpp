@@ -271,14 +271,14 @@ void NodeArvoreB::Insere_Nao_Cheio(char* chave,int prr){
 
     if (folha == true){
         while (i >= 0 && (strcmp(chave,Chaves[i]) < 0)){
-            this->PRR[i+1] = this->PRR[i];
+            PRR[i+1] = PRR[i];
             Chaves[i+1] = Chaves[i];
             //cout<<"na troca"<<PRR[i+1]<<endl;
             i--;
         }
         
         Chaves[i+1] = chave;
-        this->PRR[i+1] = prr;
+        PRR[i+1] = prr;
         Numero_chaves = Numero_chaves+1;
     }
     else{
