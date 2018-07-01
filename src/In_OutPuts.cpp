@@ -38,6 +38,9 @@ char** BuildPrimaryKey(char* name_withoutext, int size){
 	for(j = 0; j < size; j++){
 		fseek(read, 55*j, 0);
 		fread(auxname, sizeof(char), 3, read);
+		if (auxname[0] == '*');{
+			continue;
+		}
 		for(i = 0; i < 3; i++){
 			auxname[i] = toupper(auxname[i]);
 			KeyArray[j][i] = auxname[i];
