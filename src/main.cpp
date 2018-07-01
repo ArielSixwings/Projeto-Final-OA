@@ -129,6 +129,7 @@ int main(){
                     //----------------------------
                     BTreePrinter printer;
                     printer.print(teste);
+                    teste.EscreveArvoreB(ordem);
                     //system("clear");
                     //printf("Preview do Arquivo indicelista.bt:\n\n" );
                     //system("cat indicelista.bt");

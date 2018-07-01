@@ -346,20 +346,46 @@ void ArvoreB::Remove(char* chave){
     return;
 }
 
-// void ArvoreB::Escreve_Arquivo(){
-//     FILE * arquivo_Arvore;
-//     arquivo_Arvore = fopen("indicelista.bt", "w+");
-//     Raiz->Escreve_Interno(arquivo_Arvore, 1);
-// }
+void ArvoreB::Escreve_Arquivo(int ordem){
+    FILE * arquivo_Arvore;
+    arquivo_Arvore = fopen("indicelista.bt", "w+");
+    Raiz->Escreve_Interno(arquivo_Arvore, ordem);
+}
+
+int NodeArvoreB::Escreve_Interno(FILE * arquivo_Arvore, int ordem){
+    if(Raiz == NULL){
+        return -1;
+    }else{
+        int i, k = 0;
+    	while(Filhos[k] != nullptr){
+    	   k++;
+    	}
+        for(i = 0; i <= k; i++){
+           Posisao_filhos[i] =  Filhos[i]->Escreve_Interno(arquivo_Arvore, ordem);
+        }
+        //calcular tamanho da linha
+        int tamanho = ftell(arquivo_Arvore);
+        tamanho /= //tamanho da linha;
+        for(i = 0; i < (ordem - 1); i++){
+            if(i < Numero_chaves){
+                fprintf(arquivo_Arvore, "%s %.2d", Raiz->Chaves[i], Raiz->prr[i]);
+            }else{
+                fprintf(arquivo_Arvore, "************");
+            }
+        }
+        for(i = 0; i < ordem; i++){
+            fprintf(arquivo_Arvore, " %d ", Raiz->Posisao_filhos[i]);
+        }
+        fprintf(arquivo_Arvore, "\n");
+        return tamanho;
+    }
+}
 
 // void NodeArvoreB::Escreve_Interno(FILE * arquivo_Arvore, int rootcase){
 //     if(rootcase == 1){
 //         int i, j;
 //         int k = 0;
 //         for (i = 0; i < Numero_chaves; i++){
-//     	   while(Filhos[k] != nullptr){
-//     	       k++;
-//     	   }
 //             if (i == 0){
 //                 fprintf(arquivo_Arvore,"%d %d ", Numero_chaves,k);
 //             }

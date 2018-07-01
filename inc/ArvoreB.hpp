@@ -55,7 +55,7 @@ public:
  
     void merge(int indice);
 
-    void Escreve_Interno(FILE * arquivo_Arvore, int rootcase);
+    int Escreve_Interno(FILE * arquivo_Arvore, int ordem);
 
 // Make ArvoreB friend of this so that we can access private members of this
 // class in ArvoreB functions
@@ -86,7 +86,7 @@ public:
 
     void Remove(char* chave);
 
-    void Escreve_Arquivo();
+    void Escreve_Arquivo(int ordem);
 };
 
 #endif
