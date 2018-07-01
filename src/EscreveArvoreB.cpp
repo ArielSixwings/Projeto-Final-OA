@@ -1,8 +1,8 @@
+#include <stdlib.h>
 #include "EscreveArvoreB.hpp"
 //#include "ArvoreB.hpp"
 
-void BTreePrinter::visit (NodeArvoreB const *node, unsigned level, unsigned child_index)
-{
+void BTreePrinter::visit (NodeArvoreB const *node, unsigned level, unsigned child_index){
    if (level >= levels.size())
       levels.resize(level + 1);
 
@@ -30,8 +30,7 @@ void BTreePrinter::visit (NodeArvoreB const *node, unsigned level, unsigned chil
    levels[level].push_back(info);
 }
 
-std::string BTreePrinter::node_text (char **Chaves, unsigned key_count)
-{
+std::string BTreePrinter::node_text (char **Chaves, unsigned key_count){
    std::ostringstream os;
    char const *sep = "";
 
@@ -50,13 +49,11 @@ void print_blanks (unsigned n)
 }
 
 void BTreePrinter::after_traversal (){
-   for (std::size_t l = 0, level_count = levels.size(); ; )
-   {    
+   for (std::size_t l = 0, level_count = levels.size(); ; ){    
       auto const &level = levels[l];
       unsigned prev_end = 0;
 
-      for (auto const &node: level)
-      {         
+      for (auto const &node: level){         
          unsigned total = node.text_end - node.text_pos;
          unsigned slack = total - unsigned(node.text.length());
          unsigned blanks_before = node.text_pos - prev_end;

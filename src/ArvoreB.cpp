@@ -346,64 +346,91 @@ void ArvoreB::Remove(char* chave){
     return;
 }
 
-void ArvoreB::Escreve_Arquivo(){
-    FILE * arquivo_Arvore;
-    arquivo_Arvore = fopen("indicelista.bt", "w+");
-    Raiz->Escreve_Interno(arquivo_Arvore,1);
-}
+// void ArvoreB::Escreve_Arquivo(){
+//     FILE * arquivo_Arvore;
+//     arquivo_Arvore = fopen("indicelista.bt", "w+");
+//     Raiz->Escreve_Interno(arquivo_Arvore, 1);
+// }
 
-void NodeArvoreB::Escreve_Interno(FILE * arquivo_Arvore, int rootcase){
-    if(rootcase == 1){
-        int i, j;
-        int k = 0;
-        for (i = 0; i < Numero_chaves; i++){
-    	   while(Filhos[k] != nullptr){
-    	       k++;
-    	   }
-            if (i == 0){
-                fprintf(arquivo_Arvore,"%d %d ", Numero_chaves,k);
-            }
-            fprintf(arquivo_Arvore,"%s  ", Chaves[i]);
-            fprintf(arquivo_Arvore," %.2d  ", PRR[i]);
-        }
-        char* quebra_linha = "\n";
-        fprintf(arquivo_Arvore,"%s",quebra_linha);
-        for(j = 0; j < k; j++){
-            Filhos[j]->Escreve_Interno(arquivo_Arvore, 0);   
-        }
-    }else if(rootcase == 0){
-        int i, j;
-        int k = 0;
-        for (i = 0; i < Numero_chaves; i++){
-           while(Filhos[k] != nullptr){
-               k++;
-           }
-            if (i == 0){
-                fprintf(arquivo_Arvore,"%d %d ", Numero_chaves,k);
-            }
-            fprintf(arquivo_Arvore,"%s  ", Chaves[i]);
-            fprintf(arquivo_Arvore," %.2d  ", PRR[i]);
-        }
-        char* quebra_linha = "\n";
-        for(j = 0; j < k; j++){
-            Filhos[j]->Escreve_Interno(arquivo_Arvore, 0);   
-        }
-        fprintf(arquivo_Arvore,"%s",quebra_linha);
-        for(j = 0; j < k; j++){
-            Filhos[j]->Escreve_Interno(arquivo_Arvore, 2);   
-        }
-        fprintf(arquivo_Arvore,"%s",quebra_linha);
-    }else if(rootcase == 2){
-        int i, k = 0;
-        for (i = 0; i < Numero_chaves; i++){
-           while(Filhos[k] != nullptr){
-               k++;
-           }
-            if (i == 0){
-                fprintf(arquivo_Arvore,"%d %d ", Numero_chaves,k);
-            }
-            fprintf(arquivo_Arvore,"%s  ", Chaves[i]);
-            fprintf(arquivo_Arvore," %.2d  ", PRR[i]);
-        }
-    }
-}
+// void NodeArvoreB::Escreve_Interno(FILE * arquivo_Arvore, int rootcase){
+//     if(rootcase == 1){
+//         int i, j;
+//         int k = 0;
+//         for (i = 0; i < Numero_chaves; i++){
+//     	   while(Filhos[k] != nullptr){
+//     	       k++;
+//     	   }
+//             if (i == 0){
+//                 fprintf(arquivo_Arvore,"%d %d ", Numero_chaves,k);
+//             }
+//             fprintf(arquivo_Arvore,"%s  ", Chaves[i]);
+//             fprintf(arquivo_Arvore," %.2d  ", PRR[i]);
+// <<<<<<< HEAD
+//         }
+//         char* quebra_linha = "\n";
+//         fprintf(arquivo_Arvore,"%s",quebra_linha);
+//         for(j = 0; j < k; j++){
+//             Filhos[j]->Escreve_Interno(arquivo_Arvore, 0);   
+//         }
+//     }else if(rootcase == 0){
+//         int i, j;
+//         int k = 0;
+//         for (i = 0; i < Numero_chaves; i++){
+//            while(Filhos[k] != nullptr){
+//                k++;
+//            }
+//             if (i == 0){
+//                 fprintf(arquivo_Arvore,"%d %d ", Numero_chaves,k);
+//             }
+//             fprintf(arquivo_Arvore,"%s  ", Chaves[i]);
+//             fprintf(arquivo_Arvore," %.2d  ", PRR[i]);
+//         }
+//         char* quebra_linha = "\n";
+//         for(j = 0; j < k; j++){
+//             Filhos[j]->Escreve_Interno(arquivo_Arvore, 0);   
+//         }
+//         fprintf(arquivo_Arvore,"%s",quebra_linha);
+//         for(j = 0; j < k; j++){
+//             Filhos[j]->Escreve_Interno(arquivo_Arvore, 2);   
+//         }
+//         fprintf(arquivo_Arvore,"%s",quebra_linha);
+//     }else if(rootcase == 2){
+//         int i, k = 0;
+//         for (i = 0; i < Numero_chaves; i++){
+//            while(Filhos[k] != nullptr){
+//                k++;
+//            }
+//             if (i == 0){
+//                 fprintf(arquivo_Arvore,"%d %d ", Numero_chaves,k);
+//             }
+//             fprintf(arquivo_Arvore,"%s  ", Chaves[i]);
+//             fprintf(arquivo_Arvore," %.2d  ", PRR[i]);
+//         }
+// =======
+//         }
+//         char* quebra_linha = "\n";
+//         fprintf(arquivo_Arvore,"%s",quebra_linha);
+//         for(j = 0; j < k; j++){
+//             Filhos[j]->Escreve_Interno(arquivo_Arvore, 0);   
+//         }
+//     }else if(rootcase == 0){
+//         int i, j;
+//         int k = 0;
+//         for (i = 0; i < Numero_chaves; i++){
+//            while(Filhos[k] != nullptr){
+//                k++;
+//            }
+//             if (i == 0){
+//                 fprintf(arquivo_Arvore,"%d %d ", Numero_chaves,k);
+//             }
+//             fprintf(arquivo_Arvore,"%s  ", Chaves[i]);
+//             fprintf(arquivo_Arvore," %.2d  ", PRR[i]);
+//         }
+//         char* quebra_linha = "\n";
+//         for(j = 0; j < k; j++){
+//             Filhos[j]->Escreve_Interno(arquivo_Arvore, 0);   
+//         }
+//         fprintf(arquivo_Arvore,"%s",quebra_linha);
+// >>>>>>> 232e560bbe9d9051e9a77b77be983febab94dd11
+//     }
+// }
