@@ -114,7 +114,7 @@ int main(){
             }else{
                 fclose(exist1);
                 printf("\n");
-                printf("Escolha a ordem da árvore B: \n");
+                printf("Escolha a ordem da árvore B: ");
                 scanf(" %[^\n]", name2);
                 ordem = atoi(name2);
                 if(ordem %2 == 0){
@@ -126,14 +126,12 @@ int main(){
                             teste.Insere_ArvoreB(Chaves[i].chave,Chaves[i].prr);
                         }
                     }
-                    // //----------------------------
-                    // BTreePrinter printer;
-                    // printer.print(teste);
-                    // //-------------
-                    //teste.Escreve_Arquivo();
-                    system("clear");
-                    printf("Preview do Arquivo indicelista.bt:\n\n" );
-                    system("cat indicelista.bt");
+                    //----------------------------
+                    BTreePrinter printer;
+                    printer.print(teste);
+                    //system("clear");
+                    //printf("Preview do Arquivo indicelista.bt:\n\n" );
+                    //system("cat indicelista.bt");
                     printf("\n\n");
                     main();
                     break;
@@ -142,12 +140,15 @@ int main(){
                     int size = HowManyLines(fullname1);
                     ChavePrimaria* Chaves = BuildPrimaryKey(name1, size);
                     for(int i = 0; i < size; i++){
-                        teste.Insere_ArvoreB(Chaves[i].chave,Chaves[i].prr);
+                        if (Chaves[i].chave[0] != '*'){
+                            teste.Insere_ArvoreB(Chaves[i].chave,Chaves[i].prr);
+                        }
                     }
-                    //teste.Escreve_Arquivo();
-                    system("clear");
-                    printf("Preview do Arquivo indicelista.bt:\n\n");
-                    system("cat indicelista.bt");
+                    BTreePrinter printer;
+                    printer.print(teste);
+                    // system("clear");
+                    // printf("Preview do Arquivo indicelista.bt:\n\n");
+                    // system("cat indicelista.bt");
                     printf("\n\n");
                     main();
                     break;
