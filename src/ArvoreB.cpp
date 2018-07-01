@@ -354,9 +354,13 @@ void ArvoreB::Escreve_Arquivo(){
 
 void NodeArvoreB::Escreve_Interno(FILE * arquivo_Arvore){
     int i;
+    int k = 0;
     for (i = 0; i < Numero_chaves; i++){
+    	while(Filhos[k] != nullptr){
+    		k++;
+    	}
         if (i == 0){
-            fprintf(arquivo_Arvore,"%d  ", Numero_chaves);
+            fprintf(arquivo_Arvore,"%d %d ", Numero_chaves,k);
         }
         fprintf(arquivo_Arvore,"%s  ", Chaves[i]);
         fprintf(arquivo_Arvore," %.2d  ", PRR[i]);

@@ -1,7 +1,7 @@
 // Driver program to test above functions
 #include "ArvoreB.hpp"
 #include "In_OutPuts.hpp"
-
+#include "EscreveArvoreB.hpp"
 int main(){
     int ordem;
     int size;
@@ -124,6 +124,10 @@ int main(){
                     for(int i = 0; i < size; i++){
                         teste.Insere_ArvoreB(Chaves[i],(i+1));
                     }
+                    //----------------------------
+                    BTreePrinter printer;
+                    printer.print(teste);
+                    //-------------
                     teste.Escreve_Arquivo();
                     system("clear");
                     printf("Preview do Arquivo indicelista.bt:\n\n" );

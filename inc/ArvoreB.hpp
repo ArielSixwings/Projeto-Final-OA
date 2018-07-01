@@ -1,3 +1,6 @@
+#ifndef ARVOREB_H
+#define ARVOREB_H
+
 #include <iostream>
 #include <string.h>
 #include <cstddef>
@@ -12,6 +15,7 @@ typedef struct
 // No arvore B
 class NodeArvoreB
 {
+public:
     char **Chaves;  // para armazenar chaves do tipo char*
     int *PRR;
     int *Posisao_filhos; 
@@ -61,6 +65,7 @@ public:
 // A ArvoreB
 class ArvoreB
 {
+public:
     NodeArvoreB *Raiz;
     int Min_ordem;   
 public:
@@ -83,3 +88,5 @@ public:
 
     void Escreve_Arquivo();
 };
+
+#endif
