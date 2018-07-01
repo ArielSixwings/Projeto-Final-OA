@@ -3,8 +3,14 @@
 
 #include <stdbool.h>
 
+typedef struct ChavePrimaria{
+	char* chave;
+	int prr;
+}ChavePrimaria;
+
 int HowManyLines(char* name);
-char** BuildPrimaryKey(char* name, int size);
+ChavePrimaria* BuildPrimaryKey(char* name, int size);
 void AddStudent(char* name_withoutext, int size);
+void RemoveRegisterFromFile(char* name_withoutext, int prr);
 
 #endif //IN_OUTPUTS_H

@@ -23,7 +23,7 @@ int HowManyLines(char* name){
 	return howmany;
 }
 
-char** BuildPrimaryKey(char* name_withoutext, int size){
+ChavePrimaria* BuildPrimaryKey(char* name_withoutext, int size){
 	int i, j, k;
 	FILE * read;
 	char auxname[3];
@@ -31,25 +31,26 @@ char** BuildPrimaryKey(char* name_withoutext, int size){
 	char* name = (char*) malloc(sizeof(name_withoutext)+4);
 	sprintf(name, "%s.txt", name_withoutext);
 	read = fopen(name, "r");
-	char** KeyArray = (char**) malloc(size*sizeof(char*));
+	ChavePrimaria* KeyArray = (ChavePrimaria*) malloc(size*sizeof(ChavePrimaria));
 	for(k = 0; k < size; k++){
-		KeyArray[k] = (char*) malloc(9*sizeof(char));
+		KeyArray->chave[k] = (char*) malloc(9*sizeof(char));
+		KeyArray[k]->prr = k;
 	}
 	for(j = 0; j < size; j++){
 		fseek(read, 55*j, 0);
 		fread(auxname, sizeof(char), 3, read);
 		for(i = 0; i < 3; i++){
 			auxname[i] = toupper(auxname[i]);
-			KeyArray[j][i] = auxname[i];
+			KeyArray[j]->chave[i] = auxname[i];
 		}
 		fseek(read, 38, 1);
 		fread(auxmat, sizeof(char), 5, read);
-		KeyArray[j][3] = auxmat[0];
-		KeyArray[j][4] = auxmat[1];
-		KeyArray[j][5] = auxmat[2];
-		KeyArray[j][6] = auxmat[3];
-		KeyArray[j][7] = auxmat[4];
-		KeyArray[j][8] = '\0';
+		KeyArray[j]->chave[3] = auxmat[0];
+		KeyArray[j]->chave[4] = auxmat[1];
+		KeyArray[j]->chave[5] = auxmat[2];
+		KeyArray[j]->chave[6] = auxmat[3];
+		KeyArray[j]->chave[7] = auxmat[4];
+		KeyArray[j]->chave[8] = '\0';
 	}
 	fclose(read);
 	free(name);
@@ -84,4 +85,15 @@ void AddStudent(char* name_withoutext, int size){
 	fprintf(read, "%s\n", clas);
 	free(filename);
 	fclose(read);
+}
+
+void RemoveRegisterFromFile(char* name_withoutext, int prr){
+	FILE * modify;
+	char* filename = (char*) malloc(sizeof(name_withoutext)+4);
+	sprintf(filename, "%s.txt", name_withoutext);
+	modify = fopen(filename, "r+");
+	fseek(modify, 55*(prr-1), 0);
+	fwrite("*", sizeof(char), 1, modify);
+	fclose(modify);
+	free(filename);
 }

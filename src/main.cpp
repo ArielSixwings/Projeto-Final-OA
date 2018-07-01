@@ -120,14 +120,14 @@ int main(){
                 if(ordem %2 == 0){
                     ArvoreB teste((ordem / 2));
                     int size = HowManyLines(fullname1);
-                    char** Chaves = BuildPrimaryKey(name1, size);
+                    ChavePrimaria* Chaves = BuildPrimaryKey(name1, size);
                     for(int i = 0; i < size; i++){
                         teste.Insere_ArvoreB(Chaves[i],(i+1));
                     }
-                    //----------------------------
-                    BTreePrinter printer;
-                    printer.print(teste);
-                    //-------------
+                    // //----------------------------
+                    // BTreePrinter printer;
+                    // printer.print(teste);
+                    // //-------------
                     teste.Escreve_Arquivo();
                     system("clear");
                     printf("Preview do Arquivo indicelista.bt:\n\n" );

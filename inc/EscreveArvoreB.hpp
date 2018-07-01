@@ -5,8 +5,7 @@
 #include <vector>
 #include <sstream>
 
-class BTreePrinter
-{
+class BTreePrinter{
    struct NodeInfo
    {
       std::string text;
@@ -19,8 +18,7 @@ class BTreePrinter
 
    std::string node_text (char **Chaves, unsigned key_count);
 
-   void before_traversal ()
-   {
+   void before_traversal (){
       levels.resize(0);
       levels.reserve(10);   // far beyond anything that could usefully be printed
    }
@@ -30,8 +28,7 @@ class BTreePrinter
    void after_traversal ();
 
 public:
-   void print (ArvoreB const &tree)
-   {
+   void print (ArvoreB const &tree){
       before_traversal();
       visit(tree.Raiz);
       after_traversal();
