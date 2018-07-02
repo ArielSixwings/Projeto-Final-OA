@@ -126,13 +126,12 @@ int main(){
                             teste.Insere_ArvoreB(Chaves[i].chave,Chaves[i].prr);
                         }
                     }
-                    //----------------------------
                     BTreePrinter printer;
                     printer.print(teste);
-                    teste.EscreveArvoreB(ordem);
+                    teste.Escreve_Arquivo(ordem);
                     //system("clear");
-                    //printf("Preview do Arquivo indicelista.bt:\n\n" );
-                    //system("cat indicelista.bt");
+                    printf("Preview do Arquivo indicelista.bt:\n\n" );
+                    system("cat indicelista.bt");
                     printf("\n\n");
                     main();
                     break;
@@ -147,9 +146,10 @@ int main(){
                     }
                     BTreePrinter printer;
                     printer.print(teste);
-                    // system("clear");
-                    // printf("Preview do Arquivo indicelista.bt:\n\n");
-                    // system("cat indicelista.bt");
+                    teste.Escreve_Arquivo(ordem);
+                    //system("clear");
+                    printf("Preview do Arquivo indicelista.bt:\n\n");
+                    system("cat indicelista.bt");
                     printf("\n\n");
                     main();
                     break;
