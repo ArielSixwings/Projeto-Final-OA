@@ -357,37 +357,37 @@ int NodeArvoreB::Escreve_Interno(FILE * arquivo_Arvore, int ordem){
     if(this == nullptr){
         return -1;
     }
-    
-    int i = 0, k = 0;
-    while(Filhos[k] != nullptr){
-        k++;
-    }
-    cout<<"k: "<<k<<endl;
-    for(i = 0; i < k; i++){
-        Posicao_filhos[i] =  Filhos[i]->Escreve_Interno(arquivo_Arvore, ordem);
-    }
-    for (; i < 2*Min_ordem; ++i){
-        Posicao_filhos[i] = -1;
-    }
-    //calcular tamanho da linha
-    int linha = (((ordem-1)*11) + 2 + (3*ordem));  
-    int tamanho = ftell(arquivo_Arvore);
-    tamanho /= linha;
-    for(i = 0; i < (ordem - 1); i++){
-        if(i < Numero_chaves){
-            fprintf(arquivo_Arvore,"%s %.2d ", this->Chaves[i], this->PRR[i]);
-        }else{
-            fprintf(arquivo_Arvore,"*********** ");
+    else{
+        int i, k = 0;
+        Filhos[Numero_chaves+1] = nullptr;
+        while((Filhos[k] != nullptr) && (k < (ordem))){
+            k++;
         }
-    }
-    for(i = 0; i < ordem; i++){
-        if (this->Posicao_filhos[i] == -1){
-           fprintf(arquivo_Arvore, " %d", this->Posicao_filhos[i]);
+        cout<<"k: "<<k<<endl;
+        for(i = 0; i < k; i++){
+            Posicao_filhos[i] =  Filhos[i]->Escreve_Interno(arquivo_Arvore, ordem);
         }
-        else{
-            fprintf(arquivo_Arvore, "  %d", this->Posicao_filhos[i]);
+        for (; i < 2*Min_ordem; ++i){
+            Posicao_filhos[i] = -1;
         }
+        int linha = (((ordem-1)*11) + 2 + (3*ordem));  
+        int tamanho = ftell(arquivo_Arvore);
+        tamanho /= linha;
+        for(i = 0; i < (ordem - 1); i++){
+            if(i < Numero_chaves){
+                fprintf(arquivo_Arvore,"%s %.2d ", this->Chaves[i], this->PRR[i]);
+            }else{
+                fprintf(arquivo_Arvore,"*********** ");
+            }
+        }
+        for(i = 0; i < ordem; i++){
+            if (this->Posicao_filhos[i] == -1){
+                fprintf(arquivo_Arvore, " %d", this->Posicao_filhos[i]);
+            }else{
+                fprintf(arquivo_Arvore, " %.2d", this->Posicao_filhos[i]);
+            }
+        }
+        fprintf(arquivo_Arvore, "\n");
+        return tamanho;
     }
-    fprintf(arquivo_Arvore, "\n");
-    return tamanho;
 }

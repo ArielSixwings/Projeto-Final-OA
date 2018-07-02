@@ -1,4 +1,3 @@
-// Driver program to test above functions
 #include "ArvoreB.hpp"
 #include "In_OutPuts.hpp"
 #include "EscreveArvoreB.hpp"
@@ -126,9 +125,10 @@ int main(){
                             teste.Insere_ArvoreB(Chaves[i].chave,Chaves[i].prr);
                         }
                     }
-                    //----------------------------
+                    BTreePrinter printer;
+                    printer.print(teste);
                     teste.Escreve_Arquivo(ordem);
-                    system("clear");
+                    //system("clear");
                     printf("Preview do Arquivo indicelista.bt:\n\n" );
                     system("cat indicelista.bt");
                     printf("\n\n");
@@ -143,8 +143,10 @@ int main(){
                             teste.Insere_ArvoreB(Chaves[i].chave,Chaves[i].prr);
                         }
                     }
+                    BTreePrinter printer;
+                    printer.print(teste);
                     teste.Escreve_Arquivo(ordem);
-                    system("clear");
+                    //system("clear");
                     printf("Preview do Arquivo indicelista.bt:\n\n");
                     system("cat indicelista.bt");
                     printf("\n\n");
