@@ -18,7 +18,7 @@ class NodeArvoreB
 public:
     char **Chaves;  // para armazenar chaves do tipo char*
     int *PRR;
-    int *Posisao_filhos; 
+    int *Posicao_filhos; 
     int Min_ordem;      // para determinar quantidade minima de chaves/ponteiro
     NodeArvoreB **Filhos; // array para os filhos do nó
     int Numero_chaves;     // numero de chaves atualmente presenter no nó
@@ -87,6 +87,8 @@ public:
     void Remove(char* chave);
 
     void Escreve_Arquivo(int ordem);
+
+    //friend class NodeArvoreB;
 };
 
 #endif
