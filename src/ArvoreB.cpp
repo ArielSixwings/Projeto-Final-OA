@@ -1,3 +1,5 @@
+#include <string.h>
+#include "In_OutPuts.hpp"
 #include "ArvoreB.hpp"
 
 NodeArvoreB::NodeArvoreB(int aux_min_ordem, bool aux_folha){
@@ -346,10 +348,13 @@ void ArvoreB::Remove(char* chave){
     return;
 }
 
-void ArvoreB::Escreve_Arquivo(int ordem){
+void ArvoreB::Escreve_Arquivo(int ordem, char* nomearquivo){
     FILE * arquivo_Arvore;
-    arquivo_Arvore = fopen("indicelista.bt", "w+");
+    char* nometodo = (char*) malloc(sizeof(char) + 9);
+    sprintf(nometodo, "indice%s.bt", nomearquivo);
+    arquivo_Arvore = fopen(nometodo, "w+");
     Raiz->Escreve_Interno(arquivo_Arvore, ordem);
+    free(nometodo);
     fclose(arquivo_Arvore);
 }
 
@@ -363,7 +368,6 @@ int NodeArvoreB::Escreve_Interno(FILE * arquivo_Arvore, int ordem){
         while(Filhos[k] != nullptr){// && (k < (ordem))){
             k++;
         }
-        cout<<"k: "<<k<<endl;
         for(i = 0; i < k; i++){
             Posicao_filhos[i] =  Filhos[i]->Escreve_Interno(arquivo_Arvore, ordem);
         }
@@ -402,8 +406,6 @@ int NodeArvoreB::Busca_Interno(FILE * arquivo_Arvore,
         i++;
     }
     if (strcmp(chave, Chaves[i]) == 0){
-        //imprime registro
-        cout<<"Achei registro"<<endl;
         numero_seeks++;
         return PRR[i];
     }
@@ -452,16 +454,16 @@ void NodeArvoreB::Leitura_Pagina(FILE *arquivo_Arvore, int ordem){
     delete[] aux_posicao_filhos;
 }
 
-int ArvoreB::Busca_Registro(char* chave,int ordem){
+int ArvoreB::Busca_Registro(char* chave, int ordem, char* nomearquivo, int whichcase){
     int tamanho_linha = (((ordem-1)*12) + 1 + (3*ordem));
-    cout<<tamanho_linha<<endl;
-    //int tamanho_linha = (((ordem-1)*11) + 3 + (3*ordem));
     int numero_seeks = 0;
     //aloca espaço para o nó que será usado para pesquisa
     Raiz = new NodeArvoreB(Min_ordem, false);
     
     FILE * arquivo_Arvore;
-    arquivo_Arvore = fopen("indicelista.bt", "r");
+    char* nometodo = (char*) malloc(sizeof(char) + 9);
+    sprintf(nometodo, "indice%s.bt", nomearquivo);
+    arquivo_Arvore = fopen(nometodo, "r");
 
     //Faz leitura da raiz no arquivo de arvore
     fseek(arquivo_Arvore, -tamanho_linha, SEEK_END);
@@ -470,11 +472,13 @@ int ArvoreB::Busca_Registro(char* chave,int ordem){
 
     //busca da chave na arvore b
     int prr_chave = Raiz->Busca_Interno(arquivo_Arvore,chave,ordem,numero_seeks,tamanho_linha);
-    if (prr_filhos != -1){
-        FILE * arquivo_lista;
-        arquivo_Arvore = fopen("indicelista.bt", "r");
-        fseek(arquivo_Arvore, (Posicao_filhos[i]*tamanho_linha), SEEK_SET);
+    if (prr_chave != -1){
+        if(!whichcase){
+            return prr_chave;
+        }
+        FindInTheRegister(nomearquivo, prr_chave);
     }
     fclose(arquivo_Arvore);
+    free(nometodo);
     return numero_seeks;
 }

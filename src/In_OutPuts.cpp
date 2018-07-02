@@ -97,3 +97,17 @@ void RemoveRegisterFromFile(char* name_withoutext, int prr){
 	fclose(modify);
 	free(filename);
 }
+
+void FindInTheRegister(char* name_withoutext, int prr){
+	FILE* reader;
+	char* filename = (char*) malloc(sizeof(name_withoutext)+4);
+	char* line = (char*) malloc(54 * sizeof(char));
+	sprintf(filename, "%s.txt", name_withoutext);
+	reader = fopen(filename, "r");
+	fseek(reader, 55 * prr, 0);
+	fread(line, sizeof(char), 54, reader);
+	printf("Informações Referentes a chave buscada:\n%s\n", line);
+	fclose(reader);
+	free(filename);
+	free(line);
+}

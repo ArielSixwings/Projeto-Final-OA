@@ -94,9 +94,9 @@ public:
 
     void Remove(char* chave);
 
-    void Escreve_Arquivo(int ordem);
+    void Escreve_Arquivo(int ordem, char* nomearquivo);
 
-    int Busca_Registro(char* chave,int ordem);
+    int Busca_Registro(char* chave,int ordem, char* nomearquivo, int whichcase);
     //friend class NodeArvoreB;
 };
 

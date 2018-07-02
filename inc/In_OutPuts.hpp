@@ -12,5 +12,6 @@ int HowManyLines(char* name);
 ChavePrimaria* BuildPrimaryKey(char* name_withoutext, int size);
 void AddStudent(char* name_withoutext, int size);
 void RemoveRegisterFromFile(char* name_withoutext, int prr);
+void FindInTheRegister(char* name_withoutext, int prr);
 
 #endif //IN_OUTPUTS_H
