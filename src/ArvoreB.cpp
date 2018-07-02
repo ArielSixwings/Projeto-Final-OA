@@ -439,6 +439,7 @@ void NodeArvoreB::Leitura_Pagina(FILE *arquivo_Arvore, int ordem){
             for (int j = 0; j < 8; ++j){
                 Chaves[i][j] = aux_chave[j];
             }
+            Chaves[i][8] ='\0';
             PRR[i] = prr;
             Numero_chaves++;
         }

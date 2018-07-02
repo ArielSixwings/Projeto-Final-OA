@@ -12,6 +12,7 @@ int main(){
     char choice[50];
     char name1[50];
     char name2[50];
+    char *name3 = new char[9];
     char fullname1[50];
     char fullname2[50];
     char buf[32];
@@ -232,27 +233,34 @@ int main(){
                 }else{
                     fclose(exist2);
                     printf("Insira a chave primária do arquivo que se deseja a remoção: \n");
-                    scanf(" %[^\n]", name2);
+                    scanf(" %s", name3);
                     printf("Informe qual a ordem da árvore binária que contém a chave primária: \n");
                     scanf(" %[^\n]", choice);
                     ordem = atoi(choice);
                     if(ordem %2 == 0){
-                        ArvoreB Arvore_Atual((ordem / 2));
-                        int prr = Arvore_Atual.Busca_Registro(name2, ordem, name1, 0);
+                        ArvoreB Arvore_busca((ordem / 2));
+                        int prr = Arvore_busca.Busca_Registro(name3, ordem, name1, 0);
+                        cout<<"Busca_Registro:                  "<<prr<<endl;
                         RemoveRegisterFromFile(name1, prr);
+                        cout<<"RemoveRegisterFromFile"<<endl;
                         int size = HowManyLines(fullname1);
+                        cout<<"HowManyLines"<<endl;
                         ChavePrimaria* Chaves = BuildPrimaryKey(name1, size);
+                        cout<<"Escreve_Arquivo"<<endl;
+                        ArvoreB Arvore_Atual((ordem / 2));
                         for(int i = 0; i < size; i++){
                             if (Chaves[i].chave[0] != '*'){
                                 Arvore_Atual.Insere_ArvoreB(Chaves[i].chave,Chaves[i].prr);
                             }
                         }
+                        cout<<"Inserir tudo"<<endl;
                         Arvore_Atual.Escreve_Arquivo(ordem, name1);
+                        cout<<"Escreve_Arquivo"<<endl;
                         main();
                         break;
                     }else{
                         ArvoreB Arvore_Atual((ordem / 2) + 1);
-                        int prr = Arvore_Atual.Busca_Registro(name2, ordem, name1, 0);
+                        int prr = Arvore_Atual.Busca_Registro(name3, ordem, name1, 0);
                         RemoveRegisterFromFile(name1, prr);
                         int size = HowManyLines(fullname1);
                         ChavePrimaria* Chaves = BuildPrimaryKey(name1, size);
@@ -270,7 +278,7 @@ int main(){
         case 5:
             ArvoreB Arvore_Atual((4 / 2));
             //Arvore_Atual.Insere_ArvoreB("jorge",0);
-            int numero_seeks = Arvore_Atual.Busca_Registro("AND71929",4, "lista1", 1);
+            int numero_seeks = Arvore_Atual.Busca_Registro("EDU54321",4, "lista1", 1);
             cout<<"Numero de seeks para encontrar registro: "<<numero_seeks<<endl;
             // BTreePrinter print_arvore;
             // print_arvore.print(Arvore_Atual);

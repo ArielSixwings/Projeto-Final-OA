@@ -1,6 +1,6 @@
 Carlos Dias Takase                       62364  EM  A
 Samuel Silverio dos Santos               76667  EM  A
-*iego Marar Moreno                       29981  EC  A
+Diego Marar Moreno                       29981  EC  A
 Thiago Henrique Parra                    33977  EC  B
 Andre Alvim Batista                      71929  EM  B
 Miguel Bianchini                         12997  CC  A
@@ -24,4 +24,4 @@ Zelia Silva Marshall                     28583  CC  B
 Fernanda Machado Carreiro                48436  EC  A
 Xavier Augusto de Castro Neves           98776  EC  A
 Vania Schowantz Silva                    27667  CC  B
-Eduardo Lemos Rocha                      54321  EC  A
+*duardo Lemos Rocha                      54321  EC  A

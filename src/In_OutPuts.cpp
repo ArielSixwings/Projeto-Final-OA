@@ -92,7 +92,7 @@ void RemoveRegisterFromFile(char* name_withoutext, int prr){
 	char* filename = (char*) malloc(sizeof(name_withoutext)+4);
 	sprintf(filename, "%s.txt", name_withoutext);
 	modify = fopen(filename, "r+");
-	fseek(modify, 55*(prr-1), 0);
+	fseek(modify, 55*prr, 0);
 	fwrite("*", sizeof(char), 1, modify);
 	fclose(modify);
 	free(filename);
