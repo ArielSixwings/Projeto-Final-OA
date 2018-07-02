@@ -181,9 +181,13 @@ int main(){
             RemoveRegisterFromFile("lista1", 1);
             return 1;
         case 6:
+            ArvoreB Arvore_Atual((4 / 2));
+            //Arvore_Atual.Insere_ArvoreB("jorge",0);
+            int numero_seeks = Arvore_Atual.Busca_Registro("AND71929",4);
+            cout<<"Numero de seeks para encontrar registro: "<<numero_seeks<<endl;
+            // BTreePrinter print_arvore;
+            // print_arvore.print(Arvore_Atual);
             return 1;     
-        case 7:
-            return 1;
     }
     
 

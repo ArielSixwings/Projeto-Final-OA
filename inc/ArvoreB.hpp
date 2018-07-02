@@ -57,6 +57,14 @@ public:
 
     int Escreve_Interno(FILE * arquivo_Arvore, int ordem);
 
+    void Leitura_Pagina(FILE *arquivo_Arvore, int ordem);
+
+    int Busca_Interno(FILE * arquivo_Arvore,
+                                char* chave,
+                                int ordem,
+                                int& numero_seeks,
+                                int tamanho_linha);
+
 // Make ArvoreB friend of this so that we can access private members of this
 // class in ArvoreB functions
     friend class ArvoreB;
@@ -88,6 +96,7 @@ public:
 
     void Escreve_Arquivo(int ordem);
 
+    int Busca_Registro(char* chave,int ordem);
     //friend class NodeArvoreB;
 };
 
