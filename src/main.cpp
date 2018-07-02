@@ -9,13 +9,13 @@ int main(){
     FILE * exist1;
     FILE * exist2;
     unsigned int option;
-    char choice[50];
+    char buf[32];
     char name1[50];
     char name2[50];
-    char *name3 = new char[9];
+    char choice[50];
     char fullname1[50];
     char fullname2[50];
-    char buf[32];
+    char *name3 = new char[9];
     printf("------------------------------------\n");
     printf("----         Trabalho 2         ----\n");
     printf("-        [1] - Ver Arquivo         -\n");
@@ -233,11 +233,11 @@ int main(){
                     break;
                 }else{
                     fclose(exist2);
-                    printf("Insira a chave primária do arquivo que se deseja a remoção: \n");
+                    printf("\n");
+                    printf("Insira a chave primária do arquivo que se deseja remover: ");
                     scanf(" %s", name3);
-                    printf("Informe qual a ordem da árvore binária que contém a chave primária: \n");
-                    scanf(" %[^\n]", choice);
-                    ordem = atoi(choice);
+                    printf("\n");
+                    ordem = DetermineOrder(name1);
                     if(ordem %2 == 0){
                         ArvoreB Arvore_busca((ordem / 2));
                         int prr = Arvore_busca.Busca_Registro(name3, ordem, name1, 0);
@@ -296,11 +296,11 @@ int main(){
                     break;
                 }else{
                     fclose(exist2);
-                    printf("Insira a chave primária do aluno que se deseja buscar: \n");
+                    printf("\n");
+                    printf("Insira a chave primária do aluno que se deseja buscar: ");
                     scanf(" %s", name3);
-                    printf("Informe qual a ordem da árvore binária que contém a chave primária: \n");
-                    scanf(" %[^\n]", choice);
-                    ordem = atoi(choice);
+                    printf("\n");
+                    ordem = DetermineOrder(name1);
                     if(ordem %2 == 0){
                         ArvoreB Arvore_Atual((ordem / 2));
                         int numero_seeks = Arvore_Atual.Busca_Registro(name3, ordem, name1, 1);

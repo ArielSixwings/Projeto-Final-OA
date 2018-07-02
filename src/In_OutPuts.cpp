@@ -74,13 +74,13 @@ void AddStudent(char* name_withoutext, int size){
 	for(int i = sizename; i <= 40; i++){
 		fprintf(read, " ");
 	}
-	printf("Escreva a matrícula do aluno que será adicionado em até 5 espaços: \n");
+	printf("Escreva a matrícula do aluno que será adicionado em 5 espaços: \n");
 	scanf(" %[^\n]", mat);
 	fprintf(read, "%s  ", mat);
-	printf("Escreva o curso do aluno que será adicionado em até 2 espaços (letras maiúsculas): \n");
+	printf("Escreva o curso do aluno que será adicionado em 2 espaços (letras maiúsculas): \n");
 	scanf(" %[^\n]", curse);
 	fprintf(read, "%s  ", curse);
-	printf("Escreva a turma do aluno que será adicionado em até 1 espaço (letra maiúscula): \n");
+	printf("Escreva a turma do aluno que será adicionado em 1 espaço (letra maiúscula): \n");
 	scanf(" %[^\n]", clas);
 	fprintf(read, "%s\n", clas);
 	free(filename);
@@ -110,4 +110,18 @@ void FindInTheRegister(char* name_withoutext, int prr){
 	fclose(reader);
 	free(filename);
 	free(line);
+}
+
+int DetermineOrder(char* name_withoutext){
+	FILE* reader;
+	int size_line = 0;
+	char* filename = (char*) malloc(sizeof(name_withoutext)+9);	
+	sprintf(filename, "indice%s.bt", name_withoutext);
+	reader = fopen(filename, "r");
+	while((fgetc(reader) != '\n')){
+		size_line++;
+	}
+	free(filename);
+	fclose(reader);
+	return 1+(size_line+11)/15;
 }
