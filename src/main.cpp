@@ -230,6 +230,7 @@ int main(){
                 fclose(exist1);
                 if(exist2 == NULL){
                     printf("Arquivo referente a árvore binária do arquivo não foi encontrado!\n");
+                    break;
                 }else{
                     fclose(exist2);
                     printf("Insira a chave primária do arquivo que se deseja a remoção: \n");
@@ -240,22 +241,16 @@ int main(){
                     if(ordem %2 == 0){
                         ArvoreB Arvore_busca((ordem / 2));
                         int prr = Arvore_busca.Busca_Registro(name3, ordem, name1, 0);
-                        cout<<"Busca_Registro:                  "<<prr<<endl;
                         RemoveRegisterFromFile(name1, prr);
-                        cout<<"RemoveRegisterFromFile"<<endl;
                         int size = HowManyLines(fullname1);
-                        cout<<"HowManyLines"<<endl;
                         ChavePrimaria* Chaves = BuildPrimaryKey(name1, size);
-                        cout<<"Escreve_Arquivo"<<endl;
                         ArvoreB Arvore_Atual((ordem / 2));
                         for(int i = 0; i < size; i++){
                             if (Chaves[i].chave[0] != '*'){
                                 Arvore_Atual.Insere_ArvoreB(Chaves[i].chave,Chaves[i].prr);
                             }
                         }
-                        cout<<"Inserir tudo"<<endl;
                         Arvore_Atual.Escreve_Arquivo(ordem, name1);
-                        cout<<"Escreve_Arquivo"<<endl;
                         main();
                         break;
                     }else{
@@ -276,18 +271,56 @@ int main(){
                 }
             }
         case 5:
-            ArvoreB Arvore_Atual((4 / 2));
-            //Arvore_Atual.Insere_ArvoreB("jorge",0);
-            int numero_seeks = Arvore_Atual.Busca_Registro("EDU54321",4, "lista1", 1);
-            cout<<"Numero de seeks para encontrar registro: "<<numero_seeks<<endl;
-            // BTreePrinter print_arvore;
-            // print_arvore.print(Arvore_Atual);
+            printf("\n");
+            printf("Arquivos Disponíveis:\n");
+            printf("--------------------\n");
+            printf("\n\n");
+            system("ls *.txt");
+            printf("\n\n");
+            printf("--------------------\n");
+            printf("\n");
+            printf("Escolha algum dos arquivos acima (escreva o nome sem a terminação .txt)\n");
+            printf("Choose one: ");
+            scanf(" %[^\n]", name1);
+            sprintf(fullname1, "%s.txt", name1);
+            sprintf(fullname2, "indice%s.bt", name1);
+            exist1 = fopen(fullname1, "r");
+            exist2 = fopen(fullname2, "r");
+            if(exist1 == NULL){
+                printf("Arquivo selecionado não foi encontrado!\n");
+                break;
+            }else{
+                fclose(exist1);
+                if(exist2 == NULL){
+                    printf("Arquivo referente a árvore binária do arquivo não foi encontrado!\n");
+                    break;
+                }else{
+                    fclose(exist2);
+                    printf("Insira a chave primária do aluno que se deseja buscar: \n");
+                    scanf(" %s", name3);
+                    printf("Informe qual a ordem da árvore binária que contém a chave primária: \n");
+                    scanf(" %[^\n]", choice);
+                    ordem = atoi(choice);
+                    if(ordem %2 == 0){
+                        ArvoreB Arvore_Atual((ordem / 2));
+                        int numero_seeks = Arvore_Atual.Busca_Registro(name3, ordem, name1, 1);
+                        cout<<"Numero de seeks para obter o resultado: "<<numero_seeks<<endl;
+                        main();
+                        break;
+                    }else{
+                        ArvoreB Arvore_Atual((ordem / 2) + 1);
+                        int numero_seeks = Arvore_Atual.Busca_Registro(name3, ordem, name1, 1);
+                        cout<<"Numero de seeks para obter o resultado: "<<numero_seeks<<endl;
+                        main();
+                        break;
+                    }
+                }
+            }
+        case 6:
+            return 1;
+        default:
             main();
             break;
-        // case 6:
-        //     return 1;
-        // default:
-        //     return 1;
     }
     return 0;
 }
